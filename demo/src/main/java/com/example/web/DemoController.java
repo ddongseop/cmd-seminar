@@ -1,11 +1,10 @@
 package com.example.web;
 
+import com.example.dto.StudentRequestDto;
 import com.example.model.Student;
 import com.example.service.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,4 +34,13 @@ public class DemoController {
     public Student getStudent(@PathVariable int index) {
         return demoService.getOneStudent(index);
     }
+
+    @PostMapping("/students/new")
+    public String createStudent(@RequestBody StudentRequestDto request) {
+
+        demoService.createStudent(request); // 수정된 부분
+
+        return "Student 생성이 완료되었습니다.";
+    }
+
 }
